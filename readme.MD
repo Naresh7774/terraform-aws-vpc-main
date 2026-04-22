@@ -18,3 +18,7 @@ This module creates the following resources.
 * Public route table to default VPC route
 * Default VPC main route table to created VPC route
 
+### Inputs
+
+* vpc_cidr - (Required). User must supply the CIDR for VPC.
+* project_name - (Required). User must supply the project nae.
