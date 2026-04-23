@@ -132,3 +132,14 @@ resource "aws_eip" "nat" {
   tags = merge(
     var.eip_tags,
     local.common_tags,
+    {
+        Name = "${local.common_name_suffix}-nat"
+    }
+  )
+}
+
+
+# NAT gateway
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public[0].id
