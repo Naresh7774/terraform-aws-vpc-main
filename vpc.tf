@@ -34,3 +34,13 @@ resource "aws_subnet" "public" {
   availability_zone = local.az_names[count.index]
   map_public_ip_on_launch = true
 
+  tags = merge(
+    var.public_subnet_tags,
+    local.common_tags,
+    {
+        Name = "${local.common_name_suffix}-public-${local.az_names[count.index]}" # roboshop-dev-public-us-east-1a
+    }
+  )
+}
+
+
