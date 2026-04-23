@@ -50,3 +50,12 @@ resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.private_subnet_cidrs[count.index]
   availability_zone = local.az_names[count.index]
+
+  tags = merge(
+    var.private_subnet_tags,
+    local.common_tags,
+    {
+        Name = "${local.common_name_suffix}-private-${local.az_names[count.index]}" # roboshop-dev-private-us-east-1a
+    }
+  )
+}
