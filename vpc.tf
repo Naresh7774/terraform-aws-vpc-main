@@ -90,3 +90,13 @@ resource "aws_route_table" "public" {
   )
 }
 
+
+# Private Route Table
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    var.private_route_table_tags,
+    local.common_tags,
+    {
+ 
