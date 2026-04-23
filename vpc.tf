@@ -125,3 +125,10 @@ resource "aws_route" "public" {
   gateway_id = aws_internet_gateway.main.id
 }
 
+# Elastic IP
+resource "aws_eip" "nat" {
+  domain   = "vpc"
+
+  tags = merge(
+    var.eip_tags,
+    local.common_tags,
