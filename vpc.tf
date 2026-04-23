@@ -12,3 +12,16 @@ resource "aws_vpc" "main" {
     }
   )
 }
+
+# IGW
+resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    var.igw_tags,
+    local.common_tags,
+    {
+        Name = local.common_name_suffix
+    }
+  )
+}
